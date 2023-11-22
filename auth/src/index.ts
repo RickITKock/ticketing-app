@@ -1,19 +1,21 @@
 import express from "express";
 import http from "http";
-import mongoose from "mongoose";
-
-import appRouter from "./appRouter";
 import { errorHandler } from "./middleware/ErrorHandler";
+import { currentUserRouter } from "./routes/current-user";
+import { signinRouter } from "./routes/signin";
+import { signoutRouter } from "./routes/signout";
+import { signupRouter } from "./routes/signup";
 
 const app = express();
-app.use(express.json());
-
-app.use(appRouter);
-app.use(errorHandler);
-
+const server = http.createServer(app);
 const PORT: number = process.env.PORT ? +process.env.PORT : 3000;
 
-const server = http.createServer(app);
+app.use(express.json());
+app.use(currentUserRouter);
+app.use(signinRouter);
+app.use(signoutRouter);
+app.use(signupRouter);
+app.use(errorHandler);
 
 server.listen(PORT, () => {
   console.log(`⚡️[server]: Server is listening on port ${PORT}`);
