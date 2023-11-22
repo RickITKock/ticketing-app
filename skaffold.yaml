@@ -1,0 +1,18 @@
+
+apiVersion: skaffold/v3
+kind: Config
+build:
+ artifacts:
+  - image: rickitkock/auth
+    context: auth
+    sync:
+     manual:
+     - src: src/**/*.ts
+       dest: .
+    docker:
+      dockerfile: Dockerfile
+manifests:
+ rawYaml:
+ - ./infra/k8s/*
+deploy:
+ kubectl: {}
