@@ -1,6 +1,6 @@
 import express from "express";
 import http from "http";
-import { errorHandler } from "./middleware/ErrorHandler";
+import { errorHandler } from "./middleware/error-handler";
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
