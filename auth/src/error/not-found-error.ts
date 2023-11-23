@@ -1,5 +1,5 @@
 import { ValidationError, body, validationResult } from "express-validator";
-import { CustomError } from "./CustomError";
+import { CustomError } from "./custom-error";
 
 export class NotFoundError extends CustomError {
   statusCode = 404;

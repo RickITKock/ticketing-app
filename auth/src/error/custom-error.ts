@@ -12,7 +12,3 @@ export abstract class CustomError extends Error {
     field?: string;
   }[];
 }
-
-// class NotFoundError extends CustomError {
-//     statusCode: number = 404;
-// }

@@ -1,5 +1,7 @@
 import express from "express";
+import "express-async-errors";
 import http from "http";
+import { NotFoundError } from "./error/not-found-error";
 import { errorHandler } from "./middleware/error-handler";
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
@@ -15,6 +17,11 @@ app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
+
+app.all("*", async (req, res, next) => {
+  throw new NotFoundError();
+});
+
 app.use(errorHandler);
 
 server.listen(PORT, () => {
