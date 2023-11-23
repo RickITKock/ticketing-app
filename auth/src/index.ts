@@ -1,6 +1,7 @@
 import express from "express";
 import "express-async-errors";
 import http from "http";
+import mongoose from "mongoose";
 import { NotFoundError } from "./error/not-found-error";
 import { errorHandler } from "./middleware/error-handler";
 import { currentUserRouter } from "./routes/current-user";
@@ -24,15 +25,25 @@ app.all("*", async (req, res, next) => {
 
 app.use(errorHandler);
 
-server.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is listening on port ${PORT}`);
-});
+const start = async () => {
+  try {
+    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
+    console.log("⛁ [DB]: Connected to MongoDB");
+  } catch (err) {
+    console.log(err);
+  }
+  server.listen(PORT, () => {
+    console.log(`⚡️[server]: Server is listening on port ${PORT}`);
+  });
+};
 
 const shutdown = (signal: string) => {
   server.close(() => {
     console.log(`${signal} RECEIVED. Gracefully shutting down.`);
   });
 };
+
+start();
 
 process.on("SIGINT", shutdown);
 process.on("SIGHUP", shutdown);
