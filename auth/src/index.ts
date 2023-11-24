@@ -1,3 +1,4 @@
+import cookieSession from "cookie-session";
 import express from "express";
 import "express-async-errors";
 import http from "http";
@@ -14,6 +15,13 @@ const server = http.createServer(app);
 const PORT: number = process.env.PORT ? +process.env.PORT : 3000;
 
 app.use(express.json());
+app.set("trust proxy", true);
+app.use(
+  cookieSession({
+    signed: false,
+    secure: true,
+  })
+);
 app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
