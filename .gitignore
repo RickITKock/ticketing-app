@@ -1,7 +1,19 @@
-auth/node_modules
-auth/.env
+# Dependencies
+node_modules
+
+# Environment variables
+.env
+
+# Log files
 *.log
-temp-*
 .DS_Store
 Thumbs.db
+
+# VS Code Settings
 .vscode
+
+# Next.js build output
+.next/
+
+# Cache directories
+.cache
