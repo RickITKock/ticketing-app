@@ -1,5 +1,13 @@
-const Home = () => {
-  return <h1>Hello world!</h1>;
+// Install sass
+// Create pages: sign-in, sign-up, current-user (account)
+
+const LandingPage = () => {
+  return <h1>Landing Page</h1>;
 };
 
-export default Home;
+LandingPage.getInitialProps = async () => {
+  console.log("EXECUTED");
+  return {};
+};
+
+export default LandingPage;
