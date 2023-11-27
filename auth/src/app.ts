@@ -1,8 +1,7 @@
+import { NotFoundError, errorHandler } from "@rktickets1/common";
 import cookieSession from "cookie-session";
 import express from "express";
 import "express-async-errors";
-import { NotFoundError } from "./error/not-found-error";
-import { errorHandler } from "./middleware/error-handler";
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
