@@ -11,6 +11,7 @@ export default ({ url, method, body, onSuccess }) => {
 
       if (onSuccess) {
         onSuccess(response.data);
+        console.log(response.data);
       }
 
       return response.data;
