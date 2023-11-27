@@ -1,3 +1,10 @@
+import Header from "../components/header";
+
 export default ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+  return (
+    <div>
+      <Header />
+      <Component {...pageProps} />
+    </div>
+  );
 };
