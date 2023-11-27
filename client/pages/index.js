@@ -1,7 +1,4 @@
-import axios from "axios";
-
-// Install sass
-// Create pages: sign-in, sign-up, current-user (account)
+import buildClient from "../api/build-client";
 
 const LandingPage = ({ currentUser }) => {
   console.log(currentUser);
@@ -13,26 +10,11 @@ const LandingPage = ({ currentUser }) => {
 };
 
 LandingPage.getInitialProps = async (context) => {
-  console.log("LANDING PAGE");
+  console.log("LANDING PAGE!");
+  const client = buildClient(context);
+  const { data } = await client.get("/api/users/currentuser");
 
-  if (typeof window === "undefined") {
-    const response = await axios.get(
-      "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser",
-      {
-        headers: {
-          Host: "ticketing.dev",
-        },
-      }
-    );
-
-    return response.data;
-  } else {
-    return axios
-      .create({
-        baseUrl: "/",
-      })
-      .get("/api/users/currentuser");
-  }
+  return data;
 };
 
 export default LandingPage;
