@@ -1,4 +1,4 @@
-import { NotFoundError, errorHandler } from "@rktickets1/common";
+import { NotFoundError, currentUser, errorHandler } from "@rktickets1/common";
 import cookieSession from "cookie-session";
 import express from "express";
 import "express-async-errors";
@@ -14,6 +14,7 @@ app.use(
     secure: process.env.NODE_ENV !== "test",
   })
 );
+app.use(currentUser);
 
 app.use(createTicketRouter);
 
