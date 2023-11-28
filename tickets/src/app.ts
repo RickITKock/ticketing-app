@@ -2,6 +2,7 @@ import { NotFoundError, currentUser, errorHandler } from "@rktickets1/common";
 import cookieSession from "cookie-session";
 import express from "express";
 import "express-async-errors";
+import { indexTicketRouter } from "./routes";
 import { createTicketRouter } from "./routes/new";
 import { showTicketRouter } from "./routes/show";
 
@@ -17,6 +18,7 @@ app.use(
 );
 app.use(currentUser);
 
+app.use(indexTicketRouter);
 app.use(createTicketRouter);
 app.use(showTicketRouter);
 
